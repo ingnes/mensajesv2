@@ -3,20 +3,18 @@
 @section('title', 'Mensajes')
 
 @section('content_header')
-    <h1 class="text-center">Bienvenido a mensajes 😎✉</h1>
+    <h1 class="text-center alert alert-info">Bienvenido a mensajes 😎✉</h1>
 @stop
 
 @section('content')
 
 @if (Session()->has('success'))
-    <h3> {{ Session('success') }}</h3>
+    <h3 class="alert alert-success text-center"> {{ Session('success') }}</h3>
 @endif
 
 @if (Session()->has('errors'))
-    <h3 class="alert-danger text-center"> {{ Session('errors') }}</h3>
+    <h3 class="alert alert-danger text-center"> {{ Session('errors') }}</h3>
 @endif
-
-<h3 class="alert-success text-center">Todos los mensajes</h3>
 
 <div>
      <a href="{{url('mensajes-exportar')}}">Exportar</a> 

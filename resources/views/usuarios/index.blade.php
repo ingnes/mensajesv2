@@ -2,13 +2,15 @@
 
 @section('title', 'Mensajes')
 
-@section('content')
+@section('content_header')
+    <h1 class="text-center alert alert-info">Modulo de usuarios</h1>
+@stop
 
-<h3 class="alert-success text-center"> Bienvenido al modulo de usuarios</h3>
+@section('content')
 
 <table class="table table-striped table-hover text-center">    
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>ID</th>
             <th>Nombre</th>
             <th>Email</th>
