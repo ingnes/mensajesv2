@@ -35,7 +35,8 @@
                     </ul>
                 </td> 
                 <td>
-                    <a class="btn btn-primary" href="{{ route('usuarios.show',$u->id)}}">Ver</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('usuarios.show',$u->id)}}">Ver</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('usuarios.edit',$u->id)}}">Editar</a>
                     <form action="{{ route('usuarios.estado',$u->id)}}" method="post" class="d-inline">
                         {!!method_field('PUT')!!}
                         {!! csrf_field() !!}

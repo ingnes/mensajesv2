@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
     
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'roles']);
     }
 
     public function index()
@@ -52,7 +52,9 @@ class UsersController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $usuario = User::findorFail($id);
+        
+        return view('usuarios.edit', compact('usuario'));
     }
 
     /**
@@ -60,7 +62,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email'           
+        ]);
+       
+       $usuario = User::findorFail($id);
+       $usuario->update($request->all());
+
+       return view('usuarios.show', compact('usuario'))->with('info','Usuario actualizado');
     }
 
     /**

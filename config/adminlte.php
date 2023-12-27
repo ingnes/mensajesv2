@@ -130,11 +130,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-info',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -329,18 +329,18 @@ return [
                     'url'  => '/mensajes',
                 ],
             ],           
-        ],
+        ],       
         [
             'text'        => 'Usuarios',
             'url'         => '#',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'far fa-fw fa-file',            
             'submenu' => [               
                 [
                     'text' => 'Todos los usuarios',
                     'url'  => '/usuarios',
                 ],
             ],           
-        ],
+        ],       
         [
             'text'        => 'Roles',
             'url'         => '#',

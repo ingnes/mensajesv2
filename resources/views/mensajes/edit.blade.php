@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Mensajes')
+@section('title', 'Edcion de Mensajes')
 
 @section('content_header')
     <h2 class="alert-success">Bienvenido a mensajes 😎✉</h2>
@@ -8,27 +8,33 @@
 
 @section('content')
 
-<h2 class="mt-10 bg-gradient-to-r from-indigo-400 to-green-600 bg-clip-text 
-text-center text-4xl font-extrabold text-transparent sm:text-xl"> Edicion de mensaje</h2>
+<h4 class="alert alert-info"> Edicion de mensaje</h4>
 
- <form action="{{ route('mensajes.update',$mensaje->id)}}" method="POST" class="text-center">
+ <form action="{{ route('mensajes.update',$mensaje->id)}}" method="POST">
     {!!method_field('PUT')!!}
     {!! csrf_field() !!}
-      <label class="font-boldr" for="nombre">Nombre </label>
-      <input class="block mx-auto" type="text" name="nombre" value="{{ old('nombre') }}">
-      <span class="error">{{$errors->first('nombre')}}</span>
+
+      <div class="form-group">
+        <label class="form-label" for="nombre">Nombre </label>
+        <input class="form-control col-xs-4 col-md-4" type="text" name="nombre" id="nombre" value="{{ $mensaje->nombre }}">
+        <span class="error">{{$errors->first('nombre')}}</span>
+      </div>
       
+      <div class="form-group">
+        <label class="form-label" for="email">Email </label>
+        <input class="form-control col-xs-4 col-md-4" type="email" id="email" name="email" value="{{$mensaje->email }}">
+        <span class="error"> {{$errors->first('email') }}</span>                   
+      </div>
 
-      <label class="font-bold" for="email">Email </label>
-      <input class="block mx-auto" type="email" name="email" value="{{ old('email') }}">
-      <span class="error"> {{$errors->first('email') }}</span>                   
+      <div class="form-group">
+        <label class="form-label" for="mensaje">Mensaje</label>
+        <textarea class="form-control col-xs-6 col-md-6" style="resize:none;"
+         name="mensaje" id="mensaje" cols="30" rows="5" value="{{ $mensaje->mensaje }}"></textarea>
+        <span class="error">{{$errors->first('mensaje')}}</span>                           
+      </div>
+
+      <button type="submit" class="btn btn-success btn-md">Actualizar</button>
       
-
-      <label class="font-bold" for="mensaje">Mensaje</label>
-      <textarea class="block mx-auto" style="resize:none;" name="mensaje" cols="30" rows="5" value="{{ old('mensaje') }}"></textarea>
-      <span class="error">{{$errors->first('mensaje')}}</span>                           
-
-      <button type="submit" class="mt-5 block rounded bg-blue-500 px-3 py-1 text-white mx-auto">Enviar</button>
  </form>
 
 @endsection

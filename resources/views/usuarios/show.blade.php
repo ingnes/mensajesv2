@@ -8,6 +8,10 @@
     <div class="card-title text-left alert alert-info">
          Ver usuario 👥
     </div>
+
+    @if (Session()->has('info'))
+        <h4 class="alert alert-success"> {{ Session('info') }}</h4>
+    @endif
     <div class="card-body">
        
         <div class="row">

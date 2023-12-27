@@ -51,4 +51,19 @@ class User extends Authenticatable
     public function mensajes() {
         return $this->hasMany(Message::class);
     }
+
+    public function adminlte_image() {
+        //aca deberia recuperar la imagen de la bd cargada para cada usuario
+        return 'htpps://picsum.photos/300/300';
+    }
+
+    public function adminlte_desc() {
+        
+        return implode(' | ',$this->roles()->pluck('name')->toArray());
+
+    }
+
+    public function adminlte_profile_url() {
+        return 'usuario/'.$this->id;
+    }  
 }
