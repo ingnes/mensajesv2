@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
     
     public function __construct() {
-        $this->middleware(['auth', 'roles']);
+        $this->middleware(['auth', 'roles'])->except('edit');
     }
 
     public function index()
@@ -53,6 +53,8 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         $usuario = User::findorFail($id);
+
+        $this->authorize($usuario);
         
         return view('usuarios.edit', compact('usuario'));
     }

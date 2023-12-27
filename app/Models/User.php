@@ -52,6 +52,18 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    public function isAdmin() {        
+
+        foreach ($this->roles as $rol)
+        {
+            if ($rol->id == 1) {
+                return true;
+            }            
+        }
+        return false;
+    }
+    
+
     public function adminlte_image() {
         //aca deberia recuperar la imagen de la bd cargada para cada usuario
         return 'htpps://picsum.photos/300/300';
@@ -64,6 +76,6 @@ class User extends Authenticatable
     }
 
     public function adminlte_profile_url() {
-        return 'usuario/'.$this->id;
+        return 'usuarios/'.$this->id.'/edit';
     }  
 }

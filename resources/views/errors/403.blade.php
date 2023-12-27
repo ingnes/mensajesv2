@@ -12,7 +12,7 @@
     <div class="card-body">
        
         <div class="row">      
-            <div class="alert alert-danger"> No existe la pagina solicitada</div>
+            <div class="alert alert-danger"> No tiene permisos para realizar la accion solicitada</div>
         </div>       
 
     </div>
