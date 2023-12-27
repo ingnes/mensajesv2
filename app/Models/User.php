@@ -21,8 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'active',
-        'roles'
+        'active'        
     ];
 
     /**
@@ -53,16 +52,19 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
-    public function isAdmin() {        
+    public function hasRoles(array $roles) {
 
-        foreach ($this->roles as $rol)
-        {
-            if ($rol->id == 1) {
-                return true;
-            }            
-        }
-        return false;
+        return (bool) $this->roles->pluck('name')->intersect($roles)->count();
+
     }
+
+    public function isAdmin() {     
+        
+        return $this->hasRoles(['admin']);
+
+    }
+
+    
     
 
     public function adminlte_image() {
@@ -72,7 +74,7 @@ class User extends Authenticatable
 
     public function adminlte_desc() {
         
-        return implode(' | ',$this->roles()->pluck('name')->toArray());
+        return $this->roles()->pluck('name')->implode(' - ');
 
     }
 

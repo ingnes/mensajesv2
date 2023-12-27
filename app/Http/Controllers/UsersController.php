@@ -69,10 +69,15 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email'           
-        ]);      
+        ]);
+        
+        //dd($request->roles);
        
        $usuario = User::findorFail($id);
        $usuario->update($request->all());
+
+       //actualizo roles en pivote
+       $usuario->roles()->sync($request->roles);
 
        return redirect()->back()->with('info','Usuario actualizado');
     }
