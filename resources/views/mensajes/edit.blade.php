@@ -21,20 +21,26 @@
       <div class="form-group">
         <label class="form-label" for="nombre">Nombre </label>
         <input class="form-control col-xs-4 col-md-4" type="text" name="nombre" id="nombre" value="{{ $mensaje->nombre }}">
-        <span class="error">{{$errors->first('nombre')}}</span>
+        @if ($errors->first('nombre'))
+          <span class="alert alert-danger btn btn-sm">{{$errors->first('nombre')}}</span>
+        @endif
       </div>
       
       <div class="form-group">
         <label class="form-label" for="email">Email </label>
         <input class="form-control col-xs-4 col-md-4" type="email" id="email" name="email" value="{{$mensaje->email }}">
-        <span class="error"> {{$errors->first('email') }}</span>                   
+        @if ($errors->first('email'))
+          <span class="alert alert-danger btn btn-sm"> {{$errors->first('email') }}</span> 
+        @endif                  
       </div>
 
       <div class="form-group">
         <label class="form-label" for="mensaje">Mensaje</label>
         <textarea class="form-control col-xs-6 col-md-6" style="resize:none;"
          name="mensaje" id="mensaje" cols="30" rows="5"> {{ $mensaje->mensaje }}</textarea>
-        <span class="error">{{$errors->first('mensaje')}}</span>                           
+         @if ($errors->first('mensaje'))
+          <span class="alert alert-danger btn btn-sm">{{$errors->first('mensaje')}}</span> 
+        @endif                          
       </div>
 
       <button type="submit" class="btn btn-success btn-md">Actualizar</button>

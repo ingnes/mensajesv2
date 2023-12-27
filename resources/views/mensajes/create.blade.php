@@ -39,8 +39,8 @@
                 </div>
 
                 <div class="row">
-                    @if (Session()->has('errors'))
-                        <h4 class="alert alert-danger text-center"> {{ session('errors') }}</h4>                         
+                    @if (Session()->has('failed'))
+                        <h4 class="alert alert-danger text-center"> {{ session('failed') }}</h4>                         
                     @endif
 
                     @if (Session()->has('info'))
@@ -57,7 +57,7 @@
 
                             <div class="panel-body"> 
                                 
-                                @if (!session()->has('info') && !session()->has('errors') )
+                                @if (!session()->has('info') && !session()->has('failed') )
                                     
                                     <h3 class="alert alert-info text-center">Escribeme</h3>
         
@@ -69,14 +69,18 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="nombre">Nombre </label>
                                                 <input class="form-control" type="text" name="nombre" id="nombre" value="{{ old('nombre') }}"/>
-                                                <span class="alert-danger">{{$errors->first('nombre')}}</span>                               
+                                                @if ($errors->first('nombre'))
+                                                    <span class="alert alert-danger btn btn-sm">{{$errors->first('nombre')}}</span> 
+                                                @endif                              
                                             </div>
             
                                             <div class="form-group">
             
                                                 <label class="form-label" for="email">Email </label>
                                                 <input class="form-control" autocomplete="true" type="email" name="email" id="email" value="{{ old('email') }}"/>
-                                                <span class="alert-danger"> {{$errors->first('email') }}</span>
+                                                @if ($errors->first('email'))
+                                                    <span class="alert alert-danger btn btn-sm"> {{$errors->first('email') }}</span>
+                                                @endif
             
                                             </div>                               
                                     
@@ -85,8 +89,10 @@
                                         <div class="form-group">
             
                                             <label class="form-label" for="mensaje">Mensaje</label>
-                                            <textarea style="resize:none;" class="form-control" name="mensaje" id="mensaje" cols="30" rows="5" value="{{ old('mensaje') }}"></textarea>
-                                            <span class="alert-danger">{{$errors->first('mensaje')}}</span>
+                                            <textarea style="resize:none;" class="form-control" name="mensaje" id="mensaje" cols="30" rows="5"> {{ old('mensaje') }}</textarea>
+                                            @if ($errors->first('mensaje'))
+                                                <span class="alert alert alert-danger btn btn-sm">{{$errors->first('mensaje')}}</span>
+                                            @endif
             
                                         </div>
             

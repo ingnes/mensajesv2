@@ -23,13 +23,17 @@
         <div class="form-group">
             <label class="form-label" for="name">Nombre </label>
             <input class="form-control" type="text" name="name" id="name" value="{{ $usuario->name }}">
-            <span class="error">{{$errors->first('name')}}</span>
+            @if ($errors->first('name'))
+            <span class="alert alert-danger btn btn-sm">{{$errors->first('name')}}</span>
+            @endif
         </div>
           
         <div class="form-group">
             <label class="form-label" for="email">Email </label>
             <input class="form-control" type="email" id="email" name="email" value="{{ $usuario->email }}">
-            <span class="error"> {{$errors->first('email') }}</span>                   
+            @if ($errors->first('email'))
+                <span class="alert alert-danger btn btn-sm"> {{$errors->first('email') }}</span>  
+            @endif                 
         </div>       
 
     </div>
@@ -43,6 +47,9 @@
                     {{ $rol->display_name}}
                 </div>
             @endforeach
+             @if ($errors->first('roles'))
+                <span class="alert alert-danger btn btn-sm"> {{$errors->first('roles') }}</span> 
+            @endif
         </div>
     </div>
 </div>

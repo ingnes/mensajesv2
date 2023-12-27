@@ -176,7 +176,7 @@ class MessagesController extends Controller
         // dd(request()->file('file'));
         
         if (!request()->file('file')) {
-            return redirect()->back()->with('errors' ,'Error en importacion, por favor seleccione archivo a importar');
+            return redirect()->back()->with('failed' ,'Error en importacion, por favor seleccione archivo a importar');
         }
 
         $tipo = 'success';
@@ -208,7 +208,7 @@ class MessagesController extends Controller
 
                     Storage::disk('local')->put('failed/'.$filename.'.txt', json_encode($error));
 
-                   $tipo = 'errors';
+                   $tipo = 'failed';
                    $mensaje = 'Hubo un error en la importacion, chequear el archivo de logs';
                
             }

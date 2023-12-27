@@ -12,8 +12,8 @@
     <h3 class="alert alert-success text-center"> {{ Session('success') }}</h3>
 @endif
 
-@if (Session()->has('errors'))
-    <h3 class="alert alert-danger text-center"> {{ Session('errors') }}</h3>
+@if (Session()->has('failed'))
+    <h3 class="alert alert-danger text-center"> {{ Session('failed') }}</h3>
 @endif
 
 <div>
@@ -27,6 +27,11 @@
         <input type="file" name="file">
         <button type="submit">Importar</button>   
     </form>
+
+</div>
+
+<div class="row float-right">
+    <a href="{{route('mensajes.create')}}"> Nuevo Mensaje ➕</a>
 
 </div>
 
