@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UsersController extends Controller
 {
@@ -53,10 +54,11 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         $usuario = User::findorFail($id);
+        $roles =  Role::all();     
 
         $this->authorize($usuario);
         
-        return view('usuarios.edit', compact('usuario'));
+        return view('usuarios.edit', compact('usuario','roles'));
     }
 
     /**
@@ -67,7 +69,7 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email'           
-        ]);
+        ]);      
        
        $usuario = User::findorFail($id);
        $usuario->update($request->all());
