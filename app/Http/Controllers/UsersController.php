@@ -15,7 +15,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::all()->sortBy('id');
        
         return view('usuarios.index', compact('users'));
     }
@@ -82,7 +82,10 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+       User::findorFail($id)->delete();
+
+       return redirect()->back()->with('info','Usuario eliminado');
+
     }
 
     public function cambiaEstado($id) { 
