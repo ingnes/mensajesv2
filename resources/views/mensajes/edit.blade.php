@@ -10,6 +10,10 @@
 
 <h4 class="alert alert-info"> Edicion de mensaje</h4>
 
+@if (Session()->has('info'))
+<div class="alert alert-success"> {{ Session('info') }}</div>
+@endif
+
  <form action="{{ route('mensajes.update',$mensaje->id)}}" method="POST">
     {!!method_field('PUT')!!}
     {!! csrf_field() !!}
@@ -29,7 +33,7 @@
       <div class="form-group">
         <label class="form-label" for="mensaje">Mensaje</label>
         <textarea class="form-control col-xs-6 col-md-6" style="resize:none;"
-         name="mensaje" id="mensaje" cols="30" rows="5" value="{{ $mensaje->mensaje }}"></textarea>
+         name="mensaje" id="mensaje" cols="30" rows="5"> {{ $mensaje->mensaje }}</textarea>
         <span class="error">{{$errors->first('mensaje')}}</span>                           
       </div>
 

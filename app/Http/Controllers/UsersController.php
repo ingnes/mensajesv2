@@ -70,7 +70,7 @@ class UsersController extends Controller
        $usuario = User::findorFail($id);
        $usuario->update($request->all());
 
-       return view('usuarios.show', compact('usuario'))->with('info','Usuario actualizado');
+       return redirect()->back()->with('info','Usuario actualizado');
     }
 
     /**

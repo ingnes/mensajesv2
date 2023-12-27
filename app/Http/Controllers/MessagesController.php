@@ -110,7 +110,7 @@ class MessagesController extends Controller
        $mensaje = Message::findorFail($id);
        $mensaje->update($request->all());
 
-       return view('mensajes.show', compact('mensaje'));
+       return redirect()->back()->with('info','Mensaje actualizado');
     }
 
     /**

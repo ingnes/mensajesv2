@@ -10,6 +10,10 @@
 
 <h4 class="alert alert-info">Perfil 👨‍🎓</h4>
 
+@if (Session()->has('info'))
+<div class="alert alert-success"> {{ Session('info') }}</div>
+@endif
+
  <form action="{{ route('usuarios.update',$usuario->id)}}" method="POST">
     {!!method_field('PUT')!!}
     {!! csrf_field() !!}
