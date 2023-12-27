@@ -52,7 +52,7 @@
                     <td> 
                         <a href="{{route('mensajes.show',$m->id)}}">👁</a>
                         <a href="{{route('mensajes.edit',$m->id)}}">📗</a>
-                        <form action="{{route('mensajes.destroy',$m->id)}}" method="POST" style="display:inline">
+                        <form action="{{route('mensajes.destroy',$m->id)}}" method="POST" class="d-inline">
                             {!! csrf_field() !!}
                             {!! method_field('DELETE') !!}
                             <button type="submit"> ❌ </button>

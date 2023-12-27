@@ -27,6 +27,7 @@ Route::get('test', function() {
 });
 
 Route::resource('usuarios', UsersController::class);
+Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');
 
 Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.index');
 

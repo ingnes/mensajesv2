@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'Mensajes',
-    'title_prefix' => '',
+    'title' => '',
+    'title_prefix' => 'Mensajes |',
     'title_postfix' => '',
 
     /*
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/mensajes',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',

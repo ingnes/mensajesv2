@@ -39,20 +39,27 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mx-auto">
+                    @if (Session()->has('errors'))
+                        <h4 class="alert alert-danger text-center"> {{ session('errors') }}</h4>                         
+                    @endif
+
+                    @if (Session()->has('info'))
+                        <h4 class="alert alert-success text-center"> {{ session('info') }}</h4>
+                    @endif
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mx-auto">                       
 
                         <div class="panel panel-warning">
-                            <div class="panel-heading text-center">
-                                @if (!session()->has('info'))
-                                  <h3 class="panel-title">Escribeme</h3>
-                                @else
-                                  <h3 class="alert-success"> {{ session('info') }}</h3>
-                               @endif
+                            <div class="panel-heading">                              
                             </div>
 
                             <div class="panel-body"> 
                                 
-                                @if (!session()->has('info'))                                
+                                @if (!session()->has('info') && !session()->has('errors') )
+                                    
+                                    <h3 class="alert alert-info text-center">Escribeme</h3>
         
                                     <form action="{{ route('mensajes.store')}}" method="POST" class="text-center">
                                         {!! csrf_field() !!}

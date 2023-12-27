@@ -24,7 +24,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+       return view('usuarios.create');
     }
 
     /**
@@ -40,7 +40,11 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $usuario = User::findorFail($id);
+
+        return view('usuarios.show', compact('usuario'));
+
+
     }
 
     /**
@@ -65,6 +69,17 @@ class UsersController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function cambiaEstado($id) { 
+        
+        $active = !User::findorFail($id)->active;      
+
+        User::findorFail($id)->update([
+            'active' => $active
+        ]);
+
+        return redirect()->back();
     }
    
 
