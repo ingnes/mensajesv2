@@ -12,7 +12,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::all()->sortBy('id');
         return view('roles.index', compact('roles'));
     }
 

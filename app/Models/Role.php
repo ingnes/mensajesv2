@@ -11,7 +11,7 @@ class Role extends Model
 
     protected $fillable = [
         'name',
-        'display_namr',
+        'display_name',
         'description',
         'active'        
     ];
