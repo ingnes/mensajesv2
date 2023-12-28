@@ -63,10 +63,7 @@ class User extends Authenticatable
         return $this->hasRoles(['admin']);
 
     }
-
     
-    
-
     public function adminlte_image() {
         //aca deberia recuperar la imagen de la bd cargada para cada usuario
         return 'htpps://picsum.photos/300/300';

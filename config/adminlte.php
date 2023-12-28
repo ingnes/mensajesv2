@@ -347,12 +347,12 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'submenu' => [ 
                 [
-                    'text' => 'Nuevo role',
-                    'url'  => 'roles.create',
+                    'text' => 'Nuevo rol',
+                    'url'  => '/roles/create',
                 ],              
                 [
                     'text' => 'Todos los roles',
-                    'url'  => 'roles.index',
+                    'url'  => '/roles',
                 ],
             ],           
         ],

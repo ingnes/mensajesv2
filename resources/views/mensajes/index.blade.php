@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Mensajes')
+@section('title', 'Roles')
 
 @section('content_header')
     <h1 class="text-center alert alert-info">Bienvenido a mensajes 😎✉</h1>
@@ -31,7 +31,7 @@
 </div>
 
 <div class="row float-right">
-    <a href="{{route('mensajes.create')}}"> Nuevo Mensaje ➕</a>
+    <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> Nuevo Mensaje ➕</a>
 
 </div>
 

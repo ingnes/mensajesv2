@@ -73,7 +73,7 @@ class MessagesController extends Controller
        $mensaje->mensaje = $request->mensaje;       
        $mensaje->save();
 
-       return back()->with('info','El mensaje fue enviado exitosamente');
+       return redirect()->back()->with('info','El mensaje fue enviado exitosamente');
     }
 
     /**
