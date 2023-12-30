@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Exports\MessagesExport;
 use App\Imports\MessagesImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MessagesController extends Controller
 {
@@ -121,6 +122,16 @@ class MessagesController extends Controller
         Message::findorFail($id)->delete();
 
         return redirect()->route('mensajes.index');
+    }
+    
+    public function pdf() {
+
+        $mensajes = Message::all();
+        
+        $pdf = Pdf::loadView('mensajes.pdf', compact('mensajes'));
+
+        return $pdf->stream();
+
     }
     
     public function export() {

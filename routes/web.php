@@ -33,6 +33,8 @@ Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@ca
 
 Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.index');
 
+Route::get('mensajes/pdf', 'App\Http\Controllers\MessagesController@pdf')->name('mensajes.pdf');
+
 Route::resource('mensajes', MessagesController::class);
 
 Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');

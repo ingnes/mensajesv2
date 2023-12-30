@@ -30,16 +30,19 @@
 
 </div>
 
-<div class="row float-right">
-    <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> Nuevo Mensaje ➕</a>
+<div class="row float-left mx-1 mt-2">
+    <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nuevo Mensaje</a>
+</div>
 
+<div class="row float-right mx-1 mt-2">
+    <a href="{{route('mensajes.pdf')}}" target="_blank" class="btn btn-danger btn-sm mr-2 mb-2"> <i class="fa fa-file-pdf"></i> PDF</a>
 </div>
 
 @if ($mensajes->count())
 
     <table class="table table-striped table-hover text-center">    
         <thead>
-            <tr class="table-info">
+            <tr>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Mensaje</th>
