@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h4 class="alert alert-warning"> Edicion de mensaje</h4>
+<h4 class="alert alert-warning col-12 col-md-12 col-sm-12 col-lg-12"> Edicion de mensaje</h4>
 
 @if (Session()->has('info'))
 <div class="alert alert-success"> {{ Session('info') }}</div>
@@ -18,7 +18,7 @@
 
      <div class="row">
 
-      <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+      <div class="col-12 col-md-4 col-sm-4 col-lg-4">
           <h5 class="alert alert-info">Mensaje 📧</h5>
           <div class="form-group">
             <label class="form-label" for="nombre">Nombre </label>
@@ -47,7 +47,7 @@
     
       </div>
 
-      <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+      <div class="col-12 col-md-4 col-sm-4 col-lg-4">
             <h5 class="alert alert-info">Etiquetas 🏷</h5>
             <div class="row">           
               @foreach ($tags as $tag )                
@@ -62,15 +62,15 @@
             </div>
       </div>
 
-      <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+      <div class="col-12 col-md-4 col-sm-4 col-lg-4">
          <h5 class="alert alert-info"> Notas 🗒</h5>
-         
+
 
       </div>
 
      </div>
 
-     <div class="col-8 col-md-8 col-sm-8 col-lg-8 text-center">
+     <div class="col-12 col-md-12 col-sm-12 col-lg-12 text-center">
 
        <button type="submit" class="btn btn-success btn-md">Actualizar</button>
 

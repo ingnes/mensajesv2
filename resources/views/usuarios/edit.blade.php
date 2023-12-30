@@ -3,7 +3,7 @@
 @section('title', 'Editar usuario')
 
 @section('content_header')
-    <h2 class="alert alert-info">Edicion de perfil de usuario</h2>
+    <h2 class="alert alert-info col-12 col-xs-8 col-sm-8 col-md-8 col-lg-8">Edicion de perfil de usuario</h2>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
 
 <div class="row">
      
-    <div class="col-4 col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <div class="col-12 col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <h5 class="alert alert-info">Perfil 👤</h5>
         <div class="form-group">
             <label class="form-label" for="name">Nombre </label>
@@ -38,7 +38,7 @@
 
     </div>
 
-    <div class="col-4 col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+    <div class="col-12 col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
         <h5 class="alert alert-info">Roles 👥</h5>
         <div class="row">           
             @foreach ($roles as $rol )                
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="col-8 text-center mt-5">
+<div class="col-12 col-xs-8 col-sm-8 col-md-8 col-lg-8 text-center mt-5">
     <button type="submit" class="btn btn-success btn-md">Actualizar</button>
 </div>
 
