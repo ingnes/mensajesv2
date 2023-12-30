@@ -64,12 +64,12 @@
                     <td>{{ $m->notes->pluck('body')->implode(' - ')}}</td>
                     <td>{{ $m->tags->pluck('name')->implode(', ')}}  </td>
                     <td> 
-                        <a href="{{route('mensajes.show',$m->id)}}">👁</a>
-                        <a href="{{route('mensajes.edit',$m->id)}}">📗</a>
+                        <a href="{{route('mensajes.show',$m->id)}}" title="ver" class="btn btn-info btn-xs"> <i class="fa fa-eye"></i></a>
+                        <a href="{{route('mensajes.edit',$m->id)}}" title="editar" class="btn btn-success btn-xs"><i class="fa fa-pen"></i></a>
                         <form action="{{route('mensajes.destroy',$m->id)}}" method="POST" class="d-inline">
                             {!! csrf_field() !!}
                             {!! method_field('DELETE') !!}
-                            <button type="submit"> ❌ </button>
+                            <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
                         </form>                    
 
                     </td>

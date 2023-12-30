@@ -30,7 +30,17 @@
                         <tr> 
                             <td><strong>Cuerpo del mensaje</strong></td>
                             <td> {{ $mensaje->mensaje }}</td>
-                        </tr>                       
+                        </tr>
+
+                        <tr>
+                            <td><strong> Notas</strong></td>
+                            <td>{{ $mensaje->notes->pluck('body')->implode(' / ') }}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong> Etiquetas</strong></td>
+                            <td> {{ $mensaje->tags->pluck('name')->implode(', ') }}</td>
+                        </tr>
 
                     </tbody>
                 </table>

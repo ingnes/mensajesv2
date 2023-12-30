@@ -18,7 +18,7 @@
 
      <div class="row">
 
-        <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+      <div class="col-4 col-md-4 col-sm-4 col-lg-4">
           <h5 class="alert alert-info">Mensaje 📧</h5>
           <div class="form-group">
             <label class="form-label" for="nombre">Nombre </label>
@@ -45,22 +45,28 @@
             @endif                          
           </div>
     
-        </div>
+      </div>
 
-        <div class="col-4 col-md-4 col-sm-4 col-lg-4">
-          <h5 class="alert alert-info">Etiquetas 🏷</h5>
-          <div class="row">           
-            @foreach ($tags as $tag )                
-                <div class="checkbox mb-10 pb-2 col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <input type="checkbox" name="tags[]" id="tags" {{ $mensaje->tags->pluck('id')->contains($tag->id) ? 'checked' : 'none' }} value="{{$tag->id}}">
-                    {{ $tag->name}}
-                </div>
-            @endforeach
-             @if ($errors->first('tags'))
-                <span class="alert alert-danger btn btn-sm"> {{$errors->first('tags') }}</span> 
-            @endif
-        </div>
-        </div>
+      <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+            <h5 class="alert alert-info">Etiquetas 🏷</h5>
+            <div class="row">           
+              @foreach ($tags as $tag )                
+                  <div class="checkbox mb-10 pb-2 col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <input type="checkbox" name="tags[]" id="tags" {{ $mensaje->tags->pluck('id')->contains($tag->id) ? 'checked' : 'none' }} value="{{$tag->id}}">
+                      {{ $tag->name}}
+                  </div>
+              @endforeach
+              @if ($errors->first('tags'))
+                  <span class="alert alert-danger btn btn-sm"> {{$errors->first('tags') }}</span> 
+              @endif
+            </div>
+      </div>
+
+      <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+         <h5 class="alert alert-info"> Notas 🗒</h5>
+         
+
+      </div>
 
      </div>
 
