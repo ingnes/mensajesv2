@@ -22,7 +22,7 @@ class MessagesController extends Controller
 
     public function index()
     {
-       $mensajes = Message::all()->sortBy('nombre');;      
+       $mensajes = Message::with(['user','tags','notes'])->get();    
 
        //return view('mensajes.index', compact('mensajes'));
        return view('mensajes.index')->with('mensajes',$mensajes);

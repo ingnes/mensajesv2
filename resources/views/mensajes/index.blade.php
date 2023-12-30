@@ -38,6 +38,8 @@
     <a href="{{route('mensajes.pdf')}}" target="_blank" class="btn btn-danger btn-sm mr-2 mb-2"> <i class="fa fa-file-pdf"></i> PDF</a>
 </div>
 
+{{-- {{ dd($mensajes) }} --}}
+
 @if ($mensajes->count())
 
     <table class="table table-striped table-hover text-center">    
@@ -46,6 +48,8 @@
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Mensaje</th>
+                <th>Notas</th>
+                <th>Etiquetas</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -57,6 +61,8 @@
                     <td>{{ $m->nombre }}</td>
                     <td>{{ $m->email }}</td>
                     <td>{{ $m->mensaje }}</td>
+                    <td>{{ $m->notes->pluck('body')->implode(' - ')}}</td>
+                    <td>{{ $m->tags->pluck('name')->implode(', ')}}  </td>
                     <td> 
                         <a href="{{route('mensajes.show',$m->id)}}">👁</a>
                         <a href="{{route('mensajes.edit',$m->id)}}">📗</a>

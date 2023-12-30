@@ -5,6 +5,7 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\TagsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,8 @@ Route::post('mensajes-importar', 'App\Http\Controllers\MessagesController@import
 
 Route::resource('roles', RolesController::class);
 Route::put('roles-cambiaestado/{id}','App\Http\Controllers\RolesController@cambiaEstado')->name('roles.estado');
+
+Route::resource('tags', TagsController::class);
 
 Route::get('documentacion', 'App\Http\Controllers\PagesController@docu')->name('docu');
 

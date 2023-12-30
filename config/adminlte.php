@@ -356,6 +356,21 @@ return [
                 ],
             ],           
         ],
+        [
+            'text'        => 'Etiquetas',
+            'url'         => '#',
+            'icon'        => 'fa-tags',
+            'submenu' => [ 
+                [
+                    'text' => 'Nueva etiqueta',
+                    'url'  => '/tags/create',
+                ],              
+                [
+                    'text' => 'Todos las etiquetas',
+                    'url'  => '/tags',
+                ],
+            ],           
+        ],
 
         ['header' => 'account_settings'],
         [
