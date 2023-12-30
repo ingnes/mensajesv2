@@ -46,7 +46,9 @@
             <tr>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Mensaje</th>                
+                <th>Mensaje</th>
+                <th>Notas</th>
+                <th>Etiquetas</th>                                
             </tr>
         </thead>
 
@@ -56,7 +58,9 @@
                 <tr>
                     <td>{{ $m->nombre }}</td>
                     <td>{{ $m->email }}</td>
-                    <td>{{ $m->mensaje }}</td>                    
+                    <td>{{ $m->mensaje }}</td>
+                    <td>{{$m->notes->pluck('body')->implode(', ')}}</td>
+                    <td>{{$m->tags->pluck('name')->implode(', ')}}</td>                     
                 </tr>
                         
             @endforeach
