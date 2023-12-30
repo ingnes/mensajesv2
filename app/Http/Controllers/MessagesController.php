@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\Tag;
 use Carbon\Carbon;
 use App\Exports\MessagesExport;
 use App\Imports\MessagesImport;
@@ -82,7 +83,7 @@ class MessagesController extends Controller
      */
     public function show(string $id)
     {
-        $mensaje = Message::findorFail($id);
+        $mensaje = Message::with(['tags'])->findorFail($id);
 
         return view('mensajes.show', compact('mensaje'));
     }
@@ -92,9 +93,11 @@ class MessagesController extends Controller
      */
     public function edit(string $id)
     {
-        $mensaje = Message::findorFail($id);
-       
-        return view('mensajes.edit',compact('mensaje'));
+        $mensaje = Message::with(['tags'])->findorFail($id);      
+
+        $tags = Tag::all();
+
+        return view('mensajes.edit',compact('mensaje','tags'));
     }
 
     /**
@@ -102,6 +105,7 @@ class MessagesController extends Controller
      */
     public function update(Request $request, string $id)
     {
+            
         $this->validate($request, [
             'nombre' => 'required',
             'email' => 'required|email',
@@ -110,6 +114,9 @@ class MessagesController extends Controller
        
        $mensaje = Message::findorFail($id);
        $mensaje->update($request->all());
+
+       //actualizo en tabla pivote taggables
+       $mensaje->tags()->sync($request->tags);
 
        return redirect()->back()->with('info','Mensaje actualizado');
     }

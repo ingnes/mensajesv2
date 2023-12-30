@@ -63,7 +63,7 @@ class TagsController extends Controller
      */
     public function edit(string $id)
     {
-        $tag = Tag::findorFail($id);
+        $tag = Tag::findorFail($id);       
 
         return view('tags.edit')->with('tag',$tag);
         
