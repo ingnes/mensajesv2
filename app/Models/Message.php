@@ -22,6 +22,6 @@ class Message extends Model
 
     public function notes() 
     {
-        return $this->morphMany(Note::class,'notable');
+        return $this->morphMany(Note::class,'notable')->orderBy('id');
     }
 }

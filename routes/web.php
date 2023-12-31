@@ -6,6 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\NotesController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -41,14 +42,18 @@ Route::resource('mensajes', MessagesController::class);
 Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');
 Route::get('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
 Route::post('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
-Route::post('mensajes-nota', 'App\Http\Controllers\MessagesController@addNota')->name('mensajes.nota');
-
 
 Route::resource('roles', RolesController::class);
 Route::put('roles-cambiaestado/{id}','App\Http\Controllers\RolesController@cambiaEstado')->name('roles.estado');
 
 Route::resource('tags', TagsController::class);
+Route::resource('notas', NotesController::class);
 
 Route::get('documentacion', 'App\Http\Controllers\PagesController@docu')->name('docu');
+
+//AJAX
+Route::get('/get-nueva-nota', 'PrtiController@getClasificacionesCGCombo');
+
+//******************************************************************************* */
 
 Auth::routes();

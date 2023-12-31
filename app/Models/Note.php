@@ -12,6 +12,6 @@ class Note extends Model
     protected $fillable = ['body'];
 
     public function notable() {
-        return $this->morphToMany();
+        return $this->morphTo();
     }
 }

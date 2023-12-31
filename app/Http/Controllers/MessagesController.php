@@ -12,6 +12,7 @@ use App\Imports\MessagesImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
 class MessagesController extends Controller
 {
     
@@ -112,15 +113,24 @@ class MessagesController extends Controller
             'mensaje' => 'required|min:5|max:250'
         ]);
        
-       $mensaje = Message::findorFail($id);
+       $mensaje = Message::with(['notes'])->findorFail($id);
+
+    //    dd($mensaje);                                   
        $mensaje->update($request->all());
 
-       //actualizo en tabla pivote taggables
-       $mensaje->tags()->sync($request->tags);
+       //actualizo en tabla pivote taggable       
+       $mensaje->tags()->sync($request->tags); 
        
-       //actualizo en notas       
-       foreach ($request->notes as $nota){            
-        $mensaje->notes()->update(['body' => $nota]);
+      //actualizo en notas     
+       foreach ($mensaje->notes as $nota){     
+        
+            foreach ($request->notes as $key => $value) {
+                
+                if ($key === $nota->id) {
+                    $nota->update(['body' => $value]);
+                }
+            }
+        
        }
 
        return redirect()->back()->with('info','Mensaje actualizado');
@@ -248,11 +258,6 @@ class MessagesController extends Controller
          
         // Redirigir con un mensaje de éxito
         return redirect()->back()->with($tipo, $mensaje);
-    }
-
-    public function addNota()
-    {
-        return 'Nueva nota';
-    }
+    }   
 
 }
