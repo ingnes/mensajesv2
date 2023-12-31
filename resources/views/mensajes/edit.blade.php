@@ -6,6 +6,13 @@
 
 <h4 class="alert alert-warning col-12 col-md-12 col-sm-12 col-lg-12"> Edicion de mensaje</h4>
 
+<div class="row mx-1 mt-2">
+  <div class="ml-auto">
+    <a href="{{route('mensajes.nota')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nueva Nota</a>
+  </div>
+</div>
+
+
 @if (Session()->has('info'))
 <div class="alert alert-success"> {{ Session('info') }}</div>
 @endif
@@ -64,6 +71,14 @@
 
       <div class="col-12 col-md-4 col-sm-4 col-lg-4">
          <h5 class="alert alert-info"> Notas 🗒</h5>
+          @forelse ($mensaje->notes as $nota)
+            <div class="row mt-2 mx-1">
+               <textarea name="notes[]" id="nota_{{$nota->id}}" cols="30" rows="5" style="resize:none"> {{ $nota->body }}</textarea>
+            </div>
+                          
+          @empty
+              <h5 class="alert alert-warning bold">No hay notas cargadas</h5>
+          @endforelse
 
 
       </div>

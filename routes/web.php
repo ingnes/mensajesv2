@@ -41,6 +41,8 @@ Route::resource('mensajes', MessagesController::class);
 Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');
 Route::get('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
 Route::post('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
+Route::post('mensajes-nota', 'App\Http\Controllers\MessagesController@addNota')->name('mensajes.nota');
+
 
 Route::resource('roles', RolesController::class);
 Route::put('roles-cambiaestado/{id}','App\Http\Controllers\RolesController@cambiaEstado')->name('roles.estado');

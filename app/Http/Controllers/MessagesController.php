@@ -93,7 +93,7 @@ class MessagesController extends Controller
      */
     public function edit(string $id)
     {
-        $mensaje = Message::with(['tags'])->findorFail($id);      
+        $mensaje = Message::with(['tags','notes'])->findorFail($id);      
 
         $tags = Tag::all();
 
@@ -104,8 +104,8 @@ class MessagesController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-            
+    {            
+          
         $this->validate($request, [
             'nombre' => 'required',
             'email' => 'required|email',
@@ -117,6 +117,11 @@ class MessagesController extends Controller
 
        //actualizo en tabla pivote taggables
        $mensaje->tags()->sync($request->tags);
+       
+       //actualizo en notas       
+       foreach ($request->notes as $nota){            
+        $mensaje->notes()->update(['body' => $nota]);
+       }
 
        return redirect()->back()->with('info','Mensaje actualizado');
     }
@@ -245,5 +250,9 @@ class MessagesController extends Controller
         return redirect()->back()->with($tipo, $mensaje);
     }
 
+    public function addNota()
+    {
+        return 'Nueva nota';
+    }
 
 }
