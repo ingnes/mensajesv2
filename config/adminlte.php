@@ -352,12 +352,12 @@ return [
                 [
                     'text' => 'Nuevo Rol',
                     'url'  => '/roles/create',
-                    'icon' => 'fas fa-user',
+                    'icon' => 'fas fa-user-cog',
                 ],
                 [
                     'text' => 'Todos los roles',
                     'url'  => '/roles',
-                    'icon' => 'fas fa-users',
+                    'icon' => 'fas fa-user-friends',
                 ],
             ],        
         ],
