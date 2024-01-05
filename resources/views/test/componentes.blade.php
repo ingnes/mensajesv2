@@ -3,7 +3,7 @@
 @section('title', 'Componentes')
 
 @section('content_header')
-    <h5 class="text-center alert alert-info">Listar componentes</h5>
+    <h5 class="text-center alert alert-info col-md-6">Listar componentes</h5>
 @stop
 
 @section('content')
@@ -122,9 +122,26 @@
     </x-adminlte-select2>
 </div>
 
+{{-- Placeholder, time only and prepend icon --}}
+@php
+$config = ['format' => 'DD-MM-YYYY'];
+@endphp
 
+<div class="row">
+    <x-adminlte-input-date name="idTimeOnly" label="Fecha" :config="$config" placeholder="Selecciona una fecha..." fgroup-class="col-md-6">
+        <x-slot name="prependSlot">
+            <div class="input-group-text bg-gradient-info">
+                <i class="fas fa-clock"></i>
+            </div>
+        </x-slot>
+    </x-adminlte-input-date>
+</div>
 
+<div class="row">
+    <div class="form-group col-md-6">
+        <x-adminlte-button class="btn-primary btn-sm" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
+    </div>
 
-
+</div>
 
 @endsection

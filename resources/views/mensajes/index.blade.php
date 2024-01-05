@@ -34,15 +34,15 @@
     <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nuevo Mensaje</a>
 </div>
 
-<div class="row float-right mx-1 mt-2">
+{{-- <div class="row float-right mx-1 mt-2">
     <a href="{{route('mensajes.pdf')}}" target="_blank" class="btn btn-danger btn-sm mr-2 mb-2"> <i class="fa fa-file-pdf"></i> PDF</a>
-</div>
+</div> --}}
 
 {{-- {{ dd($mensajes) }} --}}
 
 @if ($mensajes->count())
 
-    <table class="table table-striped table-hover text-center">    
+    {{-- <table class="table table-striped table-hover text-center">    
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -78,7 +78,30 @@
             @endforeach
         
         </tbody>
-    </table>
+    </table> --}}
+
+    <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" striped hoverable bordered with-buttons>
+        @foreach($mensajes as $m)
+            <tr>
+                <td>{{ $m->nombre }}</td>
+                <td>{{ $m->email }}</td>
+                <td>{{ $m->mensaje }}</td>
+                <td>{{ $m->notes->pluck('body')->implode(' - ')}}</td>
+                <td>{{ $m->tags->pluck('name')->implode(', ')}}  </td>
+                <td> 
+                    <a href="{{route('mensajes.show',$m->id)}}" title="ver" class="btn btn-info btn-xs"> <i class="fa fa-eye"></i></a>
+                    <a href="{{route('mensajes.edit',$m->id)}}" title="editar" class="btn btn-success btn-xs"><i class="fa fa-pen"></i></a>
+                    <form action="{{route('mensajes.destroy',$m->id)}}" method="POST" class="d-inline">
+                        {!! csrf_field() !!}
+                        {!! method_field('DELETE') !!}
+                        <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
+                    </form>                    
+
+                </td>
+               
+            </tr>
+        @endforeach
+    </x-adminlte-datatable>
 
 @else
     <table class="table tabke-bordered table-stripped">

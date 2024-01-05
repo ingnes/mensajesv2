@@ -24,10 +24,26 @@ class MessagesController extends Controller
 
     public function index()
     {
-       $mensajes = Message::with(['user','tags','notes'])->get();    
+       //obtenemos los mensajes de la bd con sus relaciones
+        $mensajes = Message::with(['user','tags','notes'])->get(); 
+        
+      // Asignamos la cabecera al datable
+       $heads = [
+        'Nombre',
+        'Email',
+        'Mensaje',
+        'Notas',
+        'Etiquetas',
+        'Acciones',
+       ];
+
+       $data = [
+        'mensajes' => $mensajes,
+        'heads'    => $heads,
+       ];
 
        //return view('mensajes.index', compact('mensajes'));
-       return view('mensajes.index')->with('mensajes',$mensajes);
+       return view('mensajes.index')->with($data);
     }
 
     /**
