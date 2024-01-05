@@ -16,19 +16,19 @@
     <h3 class="alert alert-danger text-center"> {{ Session('failed') }}</h3>
 @endif
 
-<div>
-     <a href="{{url('mensajes-exportar')}}">Exportar</a> 
-     {{-- <a href="{{url('mensajes-importar')}}">Importar</a>       --}}
-</div>
+    {{-- <div>
+        <a href="{{url('mensajes-exportar')}}">Exportar</a> 
+        {{-- <a href="{{url('mensajes-importar')}}">Importar</a>   </div>    --}}
+    
 
-<div>
+{{-- <div>
     <form action="{{url('mensajes-importar')}}" method="post" enctype="multipart/form-data" >
         {!! csrf_field() !!}
         <input type="file" name="file">
         <button type="submit">Importar</button>   
     </form>
 
-</div>
+</div> --}}
 
 <div class="row float-left mx-1 mt-2">
     <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nuevo Mensaje</a>
