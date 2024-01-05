@@ -50,6 +50,11 @@ class PagesController extends Controller
         return view('docu');
     }
 
+    function componentes() {        
+       
+        return view('test.componentes');
+    }
+
     // function mensaje() {
 
     //     // return 'Procesando el mensaje...';
@@ -60,22 +65,22 @@ class PagesController extends Controller
     //La otra forma es pasarle la instancia de Request directamente al metodo
     //Esto es util si solo vamos a utilizar la clase request en este metodo
     //Laravel automaricamentre resolvera la clase y se la asignara a la variable $request
-    function mensaje(Request $request) {
+    // function mensaje(Request $request) {
 
-        $this->validate($request, [
-            'nombre' => 'required',
-            'email' => 'required|email',
-            'mensaje' => 'required|min:5|max:250'
-        ]);
+    //     $this->validate($request, [
+    //         'nombre' => 'required',
+    //         'email' => 'required|email',
+    //         'mensaje' => 'required|min:5|max:250'
+    //     ]);
         
-        //return $request->all();
+    //     //return $request->all();
 
-        $data = $request->all();
-        // return response()->json(['data'=>$data], 201);
-        //return redirect('/');
-        //return redirect()->route('saludos');
-        return back()->with('info','formulario enviado correctamente');
+    //     $data = $request->all();
+    //     // return response()->json(['data'=>$data], 201);
+    //     //return redirect('/');
+    //     //return redirect()->route('saludos');
+    //     return back()->with('info','formulario enviado correctamente');
 
-    }
+    // }
     
 }

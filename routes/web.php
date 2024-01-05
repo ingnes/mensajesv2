@@ -30,26 +30,34 @@ Route::get('test', function() {
     return \App\Models\User::with('mensajes')->get();
 });
 
-Route::resource('usuarios', UsersController::class);
-Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');
+Route::resource('mensajes', MessagesController::class);
 
 Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.index');
 
-Route::get('mensajes/pdf', 'App\Http\Controllers\MessagesController@pdf')->name('mensajes.pdf');
+Route::middleware(['auth'])->group(function () {
 
-Route::resource('mensajes', MessagesController::class);
+    Route::resource('usuarios', UsersController::class);
+    Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');   
+    
+    Route::get('mensajes/pdf', 'App\Http\Controllers\MessagesController@pdf')->name('mensajes.pdf');   
+    
+    Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');
+    Route::get('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
+    Route::post('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
+    
+    Route::resource('roles', RolesController::class);
+    Route::put('roles-cambiaestado/{id}','App\Http\Controllers\RolesController@cambiaEstado')->name('roles.estado');
+    
+    Route::resource('tags', TagsController::class);
+    Route::resource('notas', NotesController::class);
+    
+    Route::get('componentes', 'App\Http\Controllers\PagesController@componentes')->name('componentes');
+    
+});
 
-Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');
-Route::get('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
-Route::post('mensajes-importar', 'App\Http\Controllers\MessagesController@import')->name('mensajes.import');
-
-Route::resource('roles', RolesController::class);
-Route::put('roles-cambiaestado/{id}','App\Http\Controllers\RolesController@cambiaEstado')->name('roles.estado');
-
-Route::resource('tags', TagsController::class);
-Route::resource('notas', NotesController::class);
 
 Route::get('documentacion', 'App\Http\Controllers\PagesController@docu')->name('docu');
+
 
 //AJAX
 Route::get('/get-nueva-nota', 'PrtiController@getClasificacionesCGCombo');

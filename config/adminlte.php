@@ -366,7 +366,19 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],            
+        ], 
+        ['header' => 'TEST DEVELOPERS'],        
+        [
+            'text'    => 'componentes',
+            'icon'    => 'fas fa-buildings',
+            'submenu' => [
+                [ 
+                'text' => 'Listar componentes',
+                'icon' => 'fas fa-calendar',
+                'url'  => '/componentes',
+                ],
+            ],
+        ],             
     ],
 
     /*
@@ -425,17 +437,22 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
                 ],
             ],
         ],
