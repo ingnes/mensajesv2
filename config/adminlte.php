@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => '',
-    'title_prefix' => 'Mensajes |',
+    'title' => 'Mensajes App',
+    'title_prefix' => '',
     'title_postfix' => '',
 
     /*
@@ -64,11 +64,11 @@ return [
     */
 
     'logo' => '<b>Mensajes</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/mensajes.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Mensajes Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/mensajes.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -130,11 +130,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-info',
+    'usermenu_header' => false,
+    'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_desc' => false,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -167,12 +167,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/mensajes',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -321,57 +321,46 @@ return [
         [
             'text'        => 'Mensajes',
             'url'         => '#',
-            'icon'        => 'far fa-fw fa-file',
-            'submenu' => [
-                
+            'submenu'     => [
                 [
                     'text' => 'Todos los mensajes',
                     'url'  => '/mensajes',
+                    'icon' => 'fas fa-envelope'
                 ],
-            ],           
-        ],       
-        [
-            'text'        => 'Usuarios',
-            'url'         => '#',
-            'icon'        => 'far fa-fw fa-file',            
-            'submenu' => [               
-                [
-                    'text' => 'Todos los usuarios',
-                    'url'  => '/usuarios',
-                ],
-            ],           
-        ],       
-        [
-            'text'        => 'Roles',
-            'url'         => '#',
-            'icon'        => 'far fa-fw fa-file',
-            'submenu' => [ 
-                [
-                    'text' => 'Nuevo rol',
-                    'url'  => '/roles/create',
-                ],              
-                [
-                    'text' => 'Todos los roles',
-                    'url'  => '/roles',
-                ],
-            ],           
+            ],        
         ],
         [
             'text'        => 'Etiquetas',
             'url'         => '#',
-            'icon'        => 'fa-tags',
-            'submenu' => [ 
+            'submenu'     => [
                 [
                     'text' => 'Nueva etiqueta',
                     'url'  => '/tags/create',
-                ],              
+                    'icon' => 'fas fa-tag',
+                ],
                 [
                     'text' => 'Todos las etiquetas',
                     'url'  => '/tags',
+                    'icon' => 'fas fa-tags',
                 ],
-            ],           
+            ],        
         ],
-
+        [
+            'text'        => 'Roles',
+            'url'         => '#',
+            'submenu'     => [
+                [
+                    'text' => 'Nuevo Rol',
+                    'url'  => '/roles/create',
+                    'icon' => 'fas fa-user',
+                ],
+                [
+                    'text' => 'Todos los roles',
+                    'url'  => '/roles',
+                    'icon' => 'fas fa-users',
+                ],
+            ],        
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -383,60 +372,60 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
+        [
+            'text'    => 'multilevel',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],
+                [
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        ['header' => 'labels'],
+        [
+            'text'       => 'important',
+            'icon_color' => 'red',
+            'url'        => '#',
+        ],
+        [
+            'text'       => 'warning',
+            'icon_color' => 'yellow',
+            'url'        => '#',
+        ],
+        [
+            'text'       => 'information',
+            'icon_color' => 'cyan',
+            'url'        => '#',
+        ],
     ],
 
     /*

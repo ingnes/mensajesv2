@@ -57,3 +57,5 @@ Route::get('/get-nueva-nota', 'PrtiController@getClasificacionesCGCombo');
 //******************************************************************************* */
 
 Auth::routes();
+
+
