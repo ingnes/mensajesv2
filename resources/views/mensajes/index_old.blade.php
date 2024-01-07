@@ -2,6 +2,11 @@
 
 @section('title', 'Mensajes')
 
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+
+@endsection
+
 @section('content_header')
     <h1 class="text-center alert alert-info">Bienvenido a mensajes 😎✉</h1>
 @stop
@@ -31,9 +36,7 @@
 
 </div> --}}
 
-<div class="row justify-content-end mb-2">
-    <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nuevo Mensaje</a>
-</div>
+
 
 {{-- <div class="row float-right mx-1 mt-2">
     <a href="{{route('mensajes.pdf')}}" target="_blank" class="btn btn-danger btn-sm mr-2 mb-2"> <i class="fa fa-file-pdf"></i> PDF</a>
@@ -41,13 +44,29 @@
 
 {{-- {{ dd($mensajes) }} --}}
 
-<div class="card">
+<div class="row mb-1 mx-3 justify-content-end">
+    <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nuevo Mensaje</a>
+</div> 
+
+<div class="card">   
 
     <div class="card-body">
 
-        @if ($mensajes->count())       
+        @if ($mensajes->count())      
         
-            <x-adminlte-datatable id="mensajes" :heads="$heads" :config="$config" head-theme="dark" striped hoverable bordered with-buttons>
+            <table id="mensajes" class="table table-striped table-bordered table-hovered">
+    
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Mensaje</th>
+                        <th>Notas</th>
+                        <th>Etiquetas</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+    
                 @foreach($mensajes as $m)
                     <tr>
                         <td>{{ $m->nombre }}</td>
@@ -63,12 +82,12 @@
                                 {!! method_field('DELETE') !!}
                                 <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
                             </form>                    
-        
+    
                         </td>
-                       
+                        
                     </tr>
                 @endforeach
-            </x-adminlte-datatable>
+            </table>
         
         @else
             <table class="table tabke-bordered table-stripped">
@@ -79,8 +98,39 @@
         
         @endif
 
-    </div>    
+    </div>
+
 
 </div>
+
+
+@endsection
+
+@section('js')
+
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"> </script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
+<script>    
+
+jQuery(document).ready(function () 
+    { 
+        new DataTable('#mensajes', {
+            responsive: true,
+            autoWidth:false,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-AR.json',
+            },
+           
+        });
+
+        
+    
+    });
+
+
+</script>
+
+
 
 @endsection

@@ -512,7 +512,7 @@ return [
             ],
         ],
         'DatatablesPlugins' => [
-            'active' => true,
+            'active' => true,            
             'files' => [
                 [
                     'type' => 'js',

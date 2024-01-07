@@ -30,8 +30,6 @@ Route::get('test', function() {
     return \App\Models\User::with('mensajes')->get();
 });
 
-Route::resource('mensajes', MessagesController::class);
-
 Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.index');
 
 Route::middleware(['auth'])->group(function () {
@@ -39,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('usuarios', UsersController::class);
     Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');   
     
+    Route::resource('mensajes', MessagesController::class);
     Route::get('mensajes/pdf', 'App\Http\Controllers\MessagesController@pdf')->name('mensajes.pdf');   
     
     Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');

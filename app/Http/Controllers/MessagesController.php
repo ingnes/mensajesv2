@@ -21,6 +21,31 @@ class MessagesController extends Controller
         $this->middleware('auth', ['except' => ['create','store']]);
     }
 
+    public function index_old() {
+
+        //obtenemos los mensajes de la bd con sus relaciones
+        $mensajes = Message::with(['user','tags','notes'])->get(); 
+        
+      // Asignamos la cabecera al datable
+        $heads = [
+        'Nombre',
+        'Email',
+        'Mensaje',
+        'Notas',
+        'Etiquetas',
+        ['label' => 'Acciones', 'no-export' => true],
+        ];
+
+        $data = [
+            'mensajes' => $mensajes,
+            'heads'    => $heads,           
+           ];
+    
+           //return view('mensajes.index', compact('mensajes'));
+           return view('mensajes.index')->with($data);
+
+    }
+
 
     public function index()
     {
@@ -28,18 +53,39 @@ class MessagesController extends Controller
         $mensajes = Message::with(['user','tags','notes'])->get(); 
         
       // Asignamos la cabecera al datable
-       $heads = [
+        $heads = [
         'Nombre',
         'Email',
         'Mensaje',
         'Notas',
         'Etiquetas',
-        'Acciones',
-       ];
+        ['label' => 'Acciones', 'no-export' => true],
+        ];
 
-       $data = [
+        // configuro el datatable con el language que quiero
+               
+        // $config['language']['info'] = 'Mostrando página _PAGE_ de _PAGES_ ';        
+        // $config['language']['infoEmpty'] = 'Mostrando 0 de 0 registros';
+        // $config['language']['infoFiltered'] = '(filtrado de _MAX_ registros totales)';
+        // $config['language']['zeroRecords'] = 'No se encontraron registros';
+        // $config['language']['search'] = 'Buscar'; 
+        // $config['language']['paginate']['next'] = 'Siguiente';
+        // $config['language']['paginate']['previous'] = 'Anterior';
+        // $config['language']['loadingRecords'] = 'Cargando...';
+        // $config['language']['processing'] = 'Procesando...'; 
+        // $config['language']['lengthMenu'] = 'Mostrar _MENU_ registros'; 
+        $config['columns'] = [null, null, null, ['orderable' => false], ['orderable' => false], ['orderable' => false] ];
+        $config['autoWidth'] = false;
+        $config['responsive'] = true;              
+        $config["lengthMenu"] = [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ]; 
+        $config["language"]["url"] =  '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-AR.json';        
+        $config['language']['buttons']['pageLength']['_'] = 'Mostrar %d filas';
+        $config['language']['buttons']['pageLength']['-1'] = 'Mostrar todas las filas';                   
+
+        $data = [
         'mensajes' => $mensajes,
         'heads'    => $heads,
+        'config'   => $config,
        ];
 
        //return view('mensajes.index', compact('mensajes'));
