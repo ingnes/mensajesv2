@@ -21,10 +21,10 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-           'nombre' => fake()->text(30),
-           'email'  => fake()->unique()->text(30),
+           'nombre' => fake()->name(),
+           'email'  => fake()->unique()->safeEmail(30),
            'mensaje' => fake()->text(250),
-           'phone' => fake()->text(30),
+           'phone' => fake()->phoneNumber(),
         ];
     }
 }

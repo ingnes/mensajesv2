@@ -50,7 +50,7 @@ class MessagesController extends Controller
     public function index()
     {
        //obtenemos los mensajes de la bd con sus relaciones
-        $mensajes = Message::with(['user','tags','notes'])->get(); 
+        $mensajes = Message::with(['user','tags','notes'])->take(100)->get(); 
         
       // Asignamos la cabecera al datable
         $heads = [

@@ -9,6 +9,7 @@ use App\Http\Controllers\TagsController;
 use App\Http\Controllers\NotesController;
 
 use Illuminate\Support\Facades\Route;
+use App\Jobs\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('test', function() {
-
-    return \App\Models\User::with('mensajes')->get();
+Route::get('testJob', function() {
+    dispatch(new Test());
+    return 'job ejecutado';
 });
 
 Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.index');
