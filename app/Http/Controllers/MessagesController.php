@@ -5,12 +5,15 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\User;
 use App\Models\Tag;
 use Carbon\Carbon;
 use App\Exports\MessagesExport;
 use App\Imports\MessagesImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Mail;
+use App\Mail\TuMensajeFueEnviado;
 
 
 class MessagesController extends Controller
@@ -54,6 +57,7 @@ class MessagesController extends Controller
         
       // Asignamos la cabecera al datable
         $heads = [
+        'Fecha',
         'Nombre',
         'Email',
         'Mensaje',
@@ -74,7 +78,7 @@ class MessagesController extends Controller
         // $config['language']['loadingRecords'] = 'Cargando...';
         // $config['language']['processing'] = 'Procesando...'; 
         // $config['language']['lengthMenu'] = 'Mostrar _MENU_ registros'; 
-        $config['columns'] = [null, null, null, ['orderable' => false], ['orderable' => false], ['orderable' => false] ];
+        $config['columns'] = [null,null, null, null, ['orderable' => false], ['orderable' => false], ['orderable' => false] ];
         $config['autoWidth'] = false;
         $config['responsive'] = true;              
         $config["lengthMenu"] = [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ]; 
@@ -97,16 +101,19 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        return view('mensajes.create');
+        $users = User::where('id', '!=', auth()->id())->orderBy('id')->get();
+        
+        return view('mensajes.create')->with(['users' => $users]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-       
-       if (auth()->guest()) {
+    {       
+          
+                             
+        if (auth()->guest()) {
 
         $this->validate($request, [
             'nombre' => 'required',
@@ -117,7 +124,7 @@ class MessagesController extends Controller
        } else {
 
         $this->validate($request, [                    
-            'mensaje' => 'required|min:5|max:250'
+            'mensaje' => 'required|min:5|max:250'            
         ]);
 
 
@@ -133,10 +140,19 @@ class MessagesController extends Controller
         $mensaje->nombre = auth()->user()->name;
         $mensaje->email = auth()->user()->email;
         $mensaje->user_id = auth()->user()->id;
+        $mensaje->recipient_id = $request->recipient_id ?? null;
        }
        
        $mensaje->mensaje = $request->mensaje;       
        $mensaje->save();
+
+       //envio email de la forma tradicional
+    //    Mail::send('emails.enviado', ['msg' => $mensaje] , function($m) use ($mensaje) {
+    //     $m->to($mensaje->email, $mensaje->nombre)->subject('Tu mensaje fue recibido');
+    //    });
+
+    // envio de mail con Mailable
+     Mail::to($mensaje->email)->send(new TuMensajeFueEnviado($mensaje));
 
        return redirect()->back()->with('info','El mensaje fue enviado exitosamente');
     }

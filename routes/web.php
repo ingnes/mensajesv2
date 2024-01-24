@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\NotificationsController;
 
 use Illuminate\Support\Facades\Route;
 use App\Jobs\Test;
@@ -31,14 +32,20 @@ Route::get('testJob', function() {
     return 'job ejecutado';
 });
 
-Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.index');
+Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.create');
+Route::resource('mensajes', MessagesController::class);
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get(
+        'notifications/get',
+        [NotificationsController::class, 'getNotificationsData']
+    )->name('notifications.get');
 
     Route::resource('usuarios', UsersController::class);
     Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');   
     
-    Route::resource('mensajes', MessagesController::class);
+    
     Route::get('mensajes/pdf', 'App\Http\Controllers\MessagesController@pdf')->name('mensajes.pdf');   
     
     Route::get('mensajes-exportar', 'App\Http\Controllers\MessagesController@export')->name('mensajes.export');

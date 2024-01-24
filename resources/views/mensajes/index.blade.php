@@ -50,9 +50,10 @@
             <x-adminlte-datatable id="mensajes" :heads="$heads" :config="$config" head-theme="dark" striped hoverable bordered with-buttons>
                 @foreach($mensajes as $m)
                     <tr>
+                        <td>{{ $m->created_at->format('d/m/Y') }}</td>
                         <td>{{ $m->nombre }}</td>
                         <td>{{ $m->email }}</td>
-                        <td>{{ $m->mensaje }}</td>
+                        <td>{{ $m->mensaje }}</td>                        
                         <td>{{ $m->notes->pluck('body')->implode(' - ')}}</td>
                         <td>{{ $m->tags->pluck('name')->implode(', ')}}  </td>
                         <td> 
