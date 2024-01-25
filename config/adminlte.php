@@ -298,7 +298,7 @@ return [
             'url'          => 'notifications/show',
             'topnav_right' => true,
             'dropdown_mode'   => true,
-            'dropdown_flabel' => 'All notifications',
+            'dropdown_flabel' => 'Todas las notificationes',
             'update_cfg'   => [
                 'url' => 'notifications/get',
                 'period' => 30,
@@ -341,8 +341,13 @@ return [
                     'icon' => 'fas fa-envelope'
                 ],
                 [
-                    'text' => 'Todos los mensajes',
+                    'text' => 'Bandeja de Entrada',
                     'url'  => '/mensajes',
+                    'icon' => 'fas fa-envelope'
+                ],
+                [
+                    'text' => 'Mensajes Enviados',
+                    'url'  => '/mensajes/enviados',
                     'icon' => 'fas fa-envelope'
                 ],
             ],        

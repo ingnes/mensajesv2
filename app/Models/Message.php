@@ -11,8 +11,16 @@ class Message extends Model
    
     use HasFactory;
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    // me da los mensajes enviados por el usurio
+    // se lee un mensaje pertenece a un usuario que lo envia
+    public function enviado_por() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    //me da los mensajes recibidos x el usuario
+    // se lee un mensaje pertenece a un usuario que lo recibe
+    public function recibido_por() {
+        return $this->belongsTo(User::class, 'recipient_id');
     }
 
     public function tags() 

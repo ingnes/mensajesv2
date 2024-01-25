@@ -15,21 +15,7 @@
 @if (Session()->has('failed'))
     <h3 class="alert alert-danger text-center"> {{ Session('failed') }}</h3>
 @endif
-
-
-    {{-- <div>
-        <a href="{{url('mensajes-exportar')}}">Exportar</a> 
-        {{-- <a href="{{url('mensajes-importar')}}">Importar</a>   </div>    --}}
-    
-
-{{-- <div>
-    <form action="{{url('mensajes-importar')}}" method="post" enctype="multipart/form-data" >
-        {!! csrf_field() !!}
-        <input type="file" name="file">
-        <button type="submit">Importar</button>   
-    </form>
-
-</div> --}}
+  
 
 <div class="row justify-content-end mb-2">
     <a href="{{route('mensajes.create')}}" class="btn btn-success btn-sm mr-2 mb-2"> <i class="fa fa-plus"></i> Nuevo Mensaje</a>
@@ -51,8 +37,8 @@
                 @foreach($mensajes as $m)
                     <tr>
                         <td>{{ $m->created_at->format('d/m/Y') }}</td>
-                        <td>{{ $m->enviado_por->name }}</td>
-                        <td>{{ $m->enviado_por->email }}</td>                       
+                        <td>{{ $m->recibido_por->name }}</td>
+                        <td>{{ $m->recibido_por->email }}</td>
                         <td>{{ $m->mensaje }}</td>                        
                         <td>{{ $m->notes->pluck('body')->implode(' - ')}}</td>
                         <td>{{ $m->tags->pluck('name')->implode(', ')}}  </td>

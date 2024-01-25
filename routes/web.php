@@ -33,6 +33,7 @@ Route::get('testJob', function() {
 });
 
 Route::get('/', 'App\Http\Controllers\MessagesController@create')->name('mensajes.create');
+Route::get('/mensajes/enviados', 'App\Http\Controllers\MessagesController@enviados')->name('mensajes.enviados');
 Route::resource('mensajes', MessagesController::class);
 
 Route::middleware(['auth'])->group(function () {

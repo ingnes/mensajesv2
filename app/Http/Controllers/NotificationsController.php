@@ -3,20 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Carbon\Carbon;
 
 class NotificationsController extends Controller
 {
     public function getNotificationsData(Request $request)
     {
     
-        $notifications = [];
+        $tiene_notificaciones = Auth::user()->notifications->count(); 
 
-        if (false)        
+        //si tiene notificaciones, obtengo la ultima recibida, es decir, el ultimo mensaje recibido
+        $notification_time = Auth::user()->notifications->last()->created_at;
+        $start_time = Carbon::now();
+        
+        $minutesDiff=$start_time->diffInMinutes($notification_time);        
+
+        $notifications = [];       
+        
+
+        if ($tiene_notificaciones)        
             $notifications = [
                 [
                     'icon' => 'fas fa-fw fa-envelope',
-                    'text' => rand(0, 0) . ' nuevos mensajes',
-                    'time' => rand(0, 0) . ' minutos',
+                    'text' => ($tiene_notificaciones == 1) ? $tiene_notificaciones. ' nuevo mensaje' : $tiene_notificaciones. ' nuevos mensajes' ,
+                    'time' => 'Hace '.$minutesDiff.' minutos',
                 ],           
             ];
 
