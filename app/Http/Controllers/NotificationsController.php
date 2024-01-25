@@ -11,25 +11,39 @@ class NotificationsController extends Controller
     public function getNotificationsData(Request $request)
     {
     
-        $tiene_notificaciones = Auth::user()->notifications->count(); 
-
-        //si tiene notificaciones, obtengo la ultima recibida, es decir, el ultimo mensaje recibido
-        $notification_time = Auth::user()->notifications->last()->created_at;
-        $start_time = Carbon::now();
-        
-        $minutesDiff=$start_time->diffInMinutes($notification_time);        
+        $tiene_notificaciones = Auth::user()->notifications->count();                
 
         $notifications = [];       
         
 
-        if ($tiene_notificaciones)        
+        if ($tiene_notificaciones) {
+
+             //si tiene notificaciones, obtengo la ultima recibida, es decir, el ultimo mensaje recibido
+            $notification_time = Auth::user()->notifications->last()->created_at;
+            $start_time = Carbon::now();           
+        
+            $minutesDiff=$start_time->diffInMinutes($notification_time);
+
+            $ultima_notificacion = 'Hace '.$minutesDiff.' minutos';
+
+            if ($minutesDiff > 60 && $minutesDiff<1440) {
+                $hrs = round($minutesDiff/60);
+                $ultima_notificacion = 'Hace '.$hrs.' horas';                
+            }
+
+            if ($minutesDiff > 1440) {
+                $days = round($minutesDiff/24);
+                $ultima_notificacion = 'Hace '.$days.' días';                
+            }
+
             $notifications = [
                 [
                     'icon' => 'fas fa-fw fa-envelope',
                     'text' => ($tiene_notificaciones == 1) ? $tiene_notificaciones. ' nuevo mensaje' : $tiene_notificaciones. ' nuevos mensajes' ,
-                    'time' => 'Hace '.$minutesDiff.' minutos',
+                    'time' => $ultima_notificacion,
                 ],           
             ];
+        }        
 
         // Now, we create the notification dropdown main content.
 
