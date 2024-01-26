@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
         [NotificationsController::class, 'getNotificationsData']
     )->name('notifications.get');
 
+    Route::resource('notificaciones', NotificationsController::class);
+
     Route::resource('usuarios', UsersController::class);
     Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');   
     
@@ -66,9 +68,6 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('documentacion', 'App\Http\Controllers\PagesController@docu')->name('docu');
 
-
-//AJAX
-Route::get('/get-nueva-nota', 'PrtiController@getClasificacionesCGCombo');
 
 //******************************************************************************* */
 

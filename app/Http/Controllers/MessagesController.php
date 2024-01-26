@@ -232,7 +232,7 @@ class MessagesController extends Controller
     {
         Message::findorFail($id)->delete();
 
-        return redirect()->route('mensajes.index');
+        return redirect()->back()->with('failed', 'Mensaje Borrado');
     }
     
     public function pdf() {

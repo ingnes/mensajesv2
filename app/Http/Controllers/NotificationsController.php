@@ -8,6 +8,22 @@ use Carbon\Carbon;
 
 class NotificationsController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
+    public function index() {
+
+        $notifications = auth()->user()->notifications;
+
+        // dd($notifications);
+
+        return view('notificaciones.index')->with($notifications);
+
+    }
+    
+    
     public function getNotificationsData(Request $request)
     {
     
@@ -28,12 +44,13 @@ class NotificationsController extends Controller
 
             if ($minutesDiff > 60 && $minutesDiff<1440) {
                 $hrs = round($minutesDiff/60);
-                $ultima_notificacion = 'Hace '.$hrs.' horas';                
+                $ultima_notificacion = ($hrs == 1) ? 'Hace '.$hrs.' hora' : 'Hace '.$hrs.' horas' ;                
             }
 
             if ($minutesDiff > 1440) {
-                $days = round($minutesDiff/24);
-                $ultima_notificacion = 'Hace '.$days.' días';                
+                $hrs = round($minutesDiff/60);
+                $days = round($hrs/24);
+                $ultima_notificacion = ($days == 1) ? 'Hace '.$days.' día' : 'Hace '.$days.' días';                
             }
 
             $notifications = [
