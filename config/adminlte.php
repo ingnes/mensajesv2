@@ -295,7 +295,7 @@ return [
             'type'         => 'navbar-notification',
             'id'           => 'my-notification',
             'icon'         => 'fas fa-bell',
-            'url'          => 'notifications/show',
+            'url'          => 'notificaciones',
             'topnav_right' => true,
             'dropdown_mode'   => true,
             'dropdown_flabel' => 'Todas las notificationes',
@@ -349,6 +349,17 @@ return [
                     'text' => 'Mensajes Enviados',
                     'url'  => '/mensajes/enviados',
                     'icon' => 'fas fa-envelope'
+                ],
+            ],        
+        ],
+        [
+            'text'        => 'Notificaciones',
+            'url'         => '#',
+            'submenu'     => [                
+                [
+                    'text' => 'Todas las notificaciones',
+                    'url'  => '/notificaciones',
+                    'icon' => 'fas fa-bell'
                 ],
             ],        
         ],

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
+use Response;
 
 class NotificationsController extends Controller
 {
@@ -15,11 +17,43 @@ class NotificationsController extends Controller
     
     public function index() {
 
-        $notifications = auth()->user()->notifications;
+        //$notifications = auth()->user()->notifications;
+        $data = [
+            'unreadNotifications' => auth()->user()->unreadNotifications,
+            'readNotifications'   => auth()->user()->readNotifications
+        ];
+       
+        // dd($data);
 
-        // dd($notifications);
+        return view('notificaciones.index')->with($data);
 
-        return view('notificaciones.index')->with($notifications);
+    } 
+
+    public function read(string $id)
+    {       
+
+        DatabaseNotification::find($id)->markAsRead();
+
+        $data = [
+            'unreadNotifications' => auth()->user()->unreadNotifications,
+            'readNotifications'   => auth()->user()->readNotifications
+        ];
+        
+        return Response::json(['data' => $data], 201);
+
+
+    }
+
+    public function unread(string $id)
+    {
+        DatabaseNotification::find($id)->markAsUnRead();
+        
+        $data = [
+            'unreadNotifications' => auth()->user()->unreadNotifications,
+            'readNotifications'   => auth()->user()->readNotifications
+        ];
+        
+        return Response::json(['data' => $data], 201);
 
     }
     
@@ -27,7 +61,7 @@ class NotificationsController extends Controller
     public function getNotificationsData(Request $request)
     {
     
-        $tiene_notificaciones = Auth::user()->notifications->count();                
+        $tiene_notificaciones = Auth::user()->unreadNotifications->count();                
 
         $notifications = [];       
         
@@ -35,7 +69,7 @@ class NotificationsController extends Controller
         if ($tiene_notificaciones) {
 
              //si tiene notificaciones, obtengo la ultima recibida, es decir, el ultimo mensaje recibido
-            $notification_time = Auth::user()->notifications->last()->created_at;
+            $notification_time = Auth::user()->unreadNotifications->last()->created_at;
             $start_time = Carbon::now();           
         
             $minutesDiff=$start_time->diffInMinutes($notification_time);

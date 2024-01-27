@@ -43,7 +43,11 @@ Route::middleware(['auth'])->group(function () {
         [NotificationsController::class, 'getNotificationsData']
     )->name('notifications.get');
 
-    Route::resource('notificaciones', NotificationsController::class);
+    Route::get('notificaciones','App\Http\Controllers\NotificationsController@index')->name('notificaciones.index');
+    // Route::get('notifications/show', 'App\Http\Controllers\NotificationsController@show')->name('notificaciones.show');
+
+    Route::patch('notificaciones/read/{id}', 'App\Http\Controllers\NotificationsController@read')->name('notificaciones.read');
+    Route::patch('notificaciones/unread/{id}', 'App\Http\Controllers\NotificationsController@unread')->name('notificaciones.unread');
 
     Route::resource('usuarios', UsersController::class);
     Route::put('usuarios-cambiaestado/{id}','App\Http\Controllers\UsersController@cambiaEstado')->name('usuarios.estado');   
