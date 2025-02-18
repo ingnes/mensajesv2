@@ -50,7 +50,7 @@
                             <div class="panel-heading">                              
                             </div>
 
-                            <div class="panel-body"> 
+                            <div class="panel-body">                               
                                 
                                 @if (!session()->has('info') && !session()->has('failed') )
                                     

@@ -3,6 +3,7 @@
 @section('title', 'Mensajes')
 
 @section('content_header')
+    <Example> </Example>
     <h1 class="text-center alert alert-info">Bienvenido a mensajes 😎✉</h1>
 @stop
 
